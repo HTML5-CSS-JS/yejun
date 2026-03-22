@@ -1,40 +1,55 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>asdf</title>
-    <!--
-    rgb(빨강, 초록, 파랑, 투명도)
-    #16진법rgb
-    hsl(색조, 채도, 명도)
-    oklch(명도, 크로마, 색조)
-    -->
     <style>
+        /* 기본 라이트 모드 */
         body {
-            color: oklch(0.22 0 200) oklch(0.88 0 200);
-            background-color: oklch(0.6 0.4 200), oklch(0.3 0.4 200);
+            color: oklch(0.22 0 200);
+            background-color: oklch(0.88 0.4 200);
+            font-family: "Noto Sans CJK KR Mono", "Consolas", "MS Gothic", "Ubuntu Mono", "Noto Sans Mono", monospace;
         }
-        * {
-            font-family: "Noto Sans CJK KR Mono", "Consolas", "MS Gothic", "Ubuntu Mono", "Noto Sans Mono" monospace;
-        }
+
         img, svg {
             width: auto;
         }
-        a, a:link, a:visited, a:active, a:hover {
-            color: oklch(0.6 0.4 450) oklch(0.6 0.4 450);
+
+        a {
+            color: oklch(0.6 0.4 450);
         }
+        a:hover {
+            color: oklch(0.7 0.5 450);
+        }
+
         del, s {
-            color: oklch(0.5 0 200) oklch(0.5 0 200);
+            color: oklch(0.5 0 200);
         }
+
         .card {
-            background-color: oklch(1 0 200) oklch(0.8 0 200);
+            background-color: oklch(1 0 200);
             border-radius: 15px;
             width: 300px;
             padding: 20px;
-            float: none;
-            height: auto;
-            border: 2pt solid oklch(0.5 0.4 500) oklch(0.5 0.4 500);
+            border: 2pt solid oklch(0.5 0.4 500);
+        }
+
+        /* 다크 모드 */
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: oklch(0.88 0 200);
+                background-color: oklch(0.22 0.4 200);
+            }
+
+            a {
+                color: oklch(0.7 0.5 450);
+            }
+
+            .card {
+                background-color: oklch(0.3 0.2 200);
+                border: 2pt solid oklch(0.6 0.4 500);
+            }
         }
     </style>
 </head>
