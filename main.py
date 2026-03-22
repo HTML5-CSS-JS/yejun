@@ -10,10 +10,4 @@ templates = Jinja2Templates(directory=os.path.dirname(__file__))
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("asdf.html", {"request": request, "name": "Yejun"})from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello FastAPI!"}
+    return templates.TemplateResponse("asdf.html", {"request": request, "name": "Yejun"})
