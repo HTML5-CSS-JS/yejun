@@ -1,5 +1,5 @@
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse, Response
 from fastapi.templating import Jinja2Templates
 import os
 
@@ -15,23 +15,32 @@ async def block_old_browsers(request: Request, call_next):
 
     # IE 차단
     if "msie" in ua or "trident" in ua:
-        raise HTTPException(status_code=500)
+        return Response(status_code=500)
 
     # Chrome 버전 확인
     if "chrome/" in ua:
         try:
             version = int(ua.split("chrome/")[1].split(" ")[0].split(".")[0])
             if version <= 67:
-                raise HTTPException(status_code=500)
+                return Response(status_code=500)
         except:
             pass
 
-    # Firefox 버전 확인
-    if "firefox/" in ua:
+    # Firefox 데스크톱 버전 확인
+    if "firefox/" in ua and "mobile" not in ua:
         try:
             version = int(ua.split("firefox/")[1].split(".")[0])
             if version <= 42:
-                raise HTTPException(status_code=500)
+                return Response(status_code=500)
+        except:
+            pass
+
+    # iOS용 Firefox (FxiOS)
+    if "fxios/" in ua:
+        try:
+            version = int(ua.split("fxios/")[1].split(".")[0])
+            if version <= 42:
+                return Response(status_code=500)
         except:
             pass
 
