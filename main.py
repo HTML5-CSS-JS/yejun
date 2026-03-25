@@ -24,10 +24,11 @@ async def block_old_browsers(request: Request, call_next):
         except:
             pass
 
-    # Firefox 데스크톱 버전 확인 (모바일 제외)
+    # Firefox 데스크톱 버전 확인 (모바일/안드로이드 제외)
     if "firefox/" in ua and "mobile" not in ua and "android" not in ua:
         try:
-            version = int(ua.split("firefox/")[1].split(".")[0])
+            version_str = ua.split("firefox/")[1].split(" ")[0]
+            version = int(version_str.split(".")[0])
             if version <= 42:
                 return Response(status_code=500)
         except:
@@ -36,7 +37,8 @@ async def block_old_browsers(request: Request, call_next):
     # iOS용 Firefox (FxiOS)
     if "fxios/" in ua:
         try:
-            version = int(ua.split("fxios/")[1].split(".")[0])
+            version_str = ua.split("fxios/")[1].split(" ")[0]
+            version = int(version_str.split(".")[0])
             if version <= 42:
                 return Response(status_code=500)
         except:
