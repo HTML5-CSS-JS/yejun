@@ -5,10 +5,8 @@ import os
 
 app = FastAPI()
 
-# 현재 디렉터리를 템플릿 경로로 지정
 templates = Jinja2Templates(directory=os.path.dirname(__file__))
 
-# 브라우저 버전 차단 미들웨어
 @app.middleware("http")
 async def block_old_browsers(request: Request, call_next):
     ua = request.headers.get("user-agent", "").lower()
@@ -26,8 +24,8 @@ async def block_old_browsers(request: Request, call_next):
         except:
             pass
 
-    # Firefox 데스크톱 버전 확인
-    if "firefox/" in ua and "mobile" not in ua:
+    # Firefox 데스크톱 버전 확인 (모바일 제외)
+    if "firefox/" in ua and "mobile" not in ua and "android" not in ua:
         try:
             version = int(ua.split("firefox/")[1].split(".")[0])
             if version <= 42:
