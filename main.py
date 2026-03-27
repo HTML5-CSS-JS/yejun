@@ -11,4 +11,4 @@ templates = Jinja2Templates(directory=os.path.dirname(__file__))
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("asdf.html", {"request": request, "name": "Yejun"})
+    return templates.TemplateResponse("asdf.html", {"request": request})
