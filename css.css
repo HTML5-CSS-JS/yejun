@@ -1,0 +1,52 @@
+/* 기본 라이트 모드 */
+html {
+    color: oklch(0.22 0 200);
+    background - color: oklch(0.88 0.4 200);
+    font - family: "Fira Code VF",
+    "Noto Sans CJK KR Mono",
+    "Consolas",
+    "MS Gothic",
+    "Ubuntu Mono",
+    "Noto Sans Mono"
+    monospace;
+}
+
+img, svg {
+    width: auto;
+}
+
+a {
+    color: oklch(0.6 0.4 450);
+}
+a: hover {
+    color: oklch(0.7 0.5 450);
+}
+
+del, s {
+    color: oklch(0.5 0 200);
+}
+
+.card {
+    background - color: oklch(1 0 200);
+    border - radius: 15 px;
+    width: 300 px;
+    padding: 20 px;
+    border: 2 pt solid oklch(0.5 0.4 500);
+}
+
+/* 다크 모드 */
+@media(prefers - color - scheme: dark) {
+    html {
+        color: oklch(0.88 0 200);
+        background - color: oklch(0.22 0.4 200);
+    }
+
+    a {
+        color: oklch(0.7 0.5 450);
+    }
+
+    .card {
+        background - color: oklch(0.3 0.2 200);
+        border: 2 pt solid oklch(0.6 0.4 500);
+    }
+}
